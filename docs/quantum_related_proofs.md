@@ -12,7 +12,7 @@
 
 ### 1. QAC⁰ 中的奇偶性下界（条目 274）
 
-- **论文 PDF：** [Product-projection localization](preprints/Product-projection-localization-and-the-QAC0-parity-lower-bound-September-24-2026/paper.pdf)；[Regular trajectories and quantum parity](preprints/Regular-trajectories-pruning-and-quantum-parity-September-24-2026/paper.pdf)
+- **论文 PDF：** [Product-projection localization](../preprints/Product-projection-localization-and-the-QAC0-parity-lower-bound-September-24-2026/paper.pdf)；[Regular trajectories and quantum parity](../preprints/Regular-trajectories-pruning-and-quantum-parity-September-24-2026/paper.pdf)
 
 - **问题：** Moore 猜想关注固定深度量子电路能否计算奇偶函数：电路可以使用任意单比特门和无界扇出的 Toffoli 门，量子比特数至多为输入长度的多项式，辅助比特从 $\ket{0}$ 开始，最后只测量一个输出比特。
 - **结论：** 这类电路不能以固定的正优势计算奇偶性；输出相对随机猜测的优势可以被压到任意指定的正数以下。
@@ -22,7 +22,7 @@
 
 ### 2. 连续 Coulomb 能量的 QMA-hardness（条目 275）
 
-- **论文 PDF：** [Binary nuclear charges](preprints/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026.pdf)；[Unit nuclear charges](preprints/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026.pdf)
+- **论文 PDF：** [Binary nuclear charges](../preprints/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026/Continuum-Coulomb-hardness-with-binary-nuclear-charges-September-24-2026.pdf)；[Unit nuclear charges](../preprints/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026/QMA-hardness-of-continuum-Coulomb-energy-with-unit-nuclear-charges-September-24-2026.pdf)
 
 - **问题：** 研究三维连续空间中多电子 Coulomb 哈密顿量的基态能量能否被有效近似，特别是在核位置为有理数、核电荷为 1、电子数为多项式规模等受限条件下是否仍然困难。
 - **结论：** 该近似问题具有 QMA-hardness（QMA 困难性）；允许用二进制编码任意正整数核电荷的版本也成立。
@@ -32,17 +32,19 @@
 
 ### 3. 精确量子因式分解（条目 279）
 
-- **论文 PDF：** [Exact quantum factoring](preprints/Exact-quantum-factoring-over-a-fixed-finite-gate-set-September-25-2026/main.pdf)
+- **论文 PDF：** [Exact quantum factoring](../preprints/Exact-quantum-factoring-over-a-fixed-finite-gate-set-September-25-2026/main.pdf)
+
+- **详细解析：** [固定有限门集上的概率一量子因式分解](exact_quantum_factoring_279.md)
 
 - **问题：** 能否用一个统一的量子算法，对任意整数 $N\ge 2$ 输出完整素因数分解，并把成功概率做到严格等于 1，而不只是让错误概率随规模变小。
 - **结论：** 在固定的有限常数规模门集上，存在统一的多项式时间量子电路，能够对所有输入以概率 1 输出正确的完整素因数分解。
-- **方法：** 算法先对模 $m$ 的单位 $a$ 做阶试验；相位寄存器不用任意精细旋转，而是用四相位 step state 和一段复指数的分段线性插值来产生可检验的相位信息。论文为每个候选阶构造 dyadic majorant，计算有界多项式片段的 exact power sums，并用两个校正分支把真正阶的概率质量调整为严格相等；返回检验只保留真阶的正倍数。因式分解本身递归地产生 $p-1$ 的素因数分解，使用改造后的确定性 primality test 和 occurrence tree 控制候选树规模；所有延迟检验与均匀猜测都设计成相同保留质量，先得到精确成功率 $1/4$，再用 sign reflection 和 exact amplitude amplification 将成功率提升到 $1$。整个过程只使用固定的 $H,T,T^\dagger,\mathrm{CNOT}$ 门，并显式验证门数、辅助比特和候选表均为多项式。
+- **方法：** 算法先对模 $m$ 的单位 $a$ 做阶试验；相位寄存器不用任意精细旋转，而是用四相位 step state 和一段复指数的分段线性插值来产生可检验的相位信息。论文为每个候选阶构造 dyadic majorant，计算有界多项式片段的 exact power sums，并用两个校正分支把真正阶的概率质量调整为严格相等；返回检验只保留真阶的正倍数。因式分解本身递归地产生 $p-1$ 的素因数分解，使用改造后的确定性 primality test 和 occurrence tree 控制候选树规模；所有延迟检验与均匀猜测都设计成相同保留质量，先得到精确成功率 $1/4$，再用 sign reflection 和 exact amplitude amplification 将成功率提升到 $1$。固定门集为 NOT、CNOT、Toffoli、Hadamard、$S=\operatorname{diag}(1,i)$，以及这些门的逆门和单控制版本；论文显式验证门数、辅助比特和候选表均为多项式。
 - **影响：** 结果把“统一算法”“固定有限门集”和“概率严格等于一”同时放进同一个可证明的量子电路模型，为 exact quantum computation 提供了一个具体而非渐近的范例。它不声称经典因式分解因此变得容易，也不代表当前硬件上实用；真正的影响在于澄清了 Shor 型相位估计并非获得零错误保证的唯一途径，并展示了如何用精确概率账本和幅度放大消除尾部错误。
 - **Lean 已形式化：** `lean/docs/279.md` 和 `lean/ComparatorChallenges/ExactQuantumFactoring.lean`；形式化明确记录固定有限门集、统一性、多项式资源和概率一结论。
 
 ### 4. QAOA 与 SK 模型最优值（条目 281）
 
-- **论文 PDF：** [QAOA and the SK ground-state energy](preprints/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026.pdf)；[Full support of the SK order parameter](preprints/Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026/main.pdf)
+- **论文 PDF：** [QAOA and the SK ground-state energy](../preprints/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026/QAOA-attains-the-SK-ground-state-energy-in-the-thermodynamic-first-limit-September-25-2026.pdf)；[Full support of the SK order parameter](../preprints/Full-support-of-the-zero-temperature-Sherrington-Kirkpatrick-order-parameter-September-27-2026/main.pdf)
 
 - **问题：** 量子近似优化算法（QAOA）能否在高斯零场 Sherrington–Kirkpatrick（SK）自旋玻璃模型中达到基态能量的渐近最优值，即 Parisi 值；极限次序是先让系统规模趋于无穷，再提高算法深度。
 - **结论：** 存在有限深度且不依赖具体系统实例的确定角度，使 QAOA 能量在热力学极限中逼近 SK 模型的 Parisi 基态能量。
@@ -52,7 +54,7 @@
 
 ### 5. 预言机辅助的统一酉综合（条目 283）
 
-- **论文 PDF：** [Polynomial-time unitary synthesis](preprints/Polynomial-Time-Unitary-Synthesis-from-a-Boolean-Oracle-October-5-2026/paper.pdf)
+- **论文 PDF：** [Polynomial-time unitary synthesis](../preprints/Polynomial-Time-Unitary-Synthesis-from-a-Boolean-Oracle-October-5-2026/paper.pdf)
 
 - **问题：** 能否选取一个布尔预言机，使统一的量子预言机电路对每个 $n$ 比特酉通道都能实现 diamond norm 误差至多 $1/2$ 的近似。
 - **结论：** 在允许目标相关信息由预言机提供的模型中，固定门集可以实现多项式资源的常误差通用酉综合。
@@ -62,7 +64,7 @@
 
 ### 6. 随机查询与量子查询的近四次分离（条目 284）
 
-- **论文 PDF：** [Nearly quartic query separation](preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf)
+- **论文 PDF：** [Nearly quartic query separation](../preprints/A-Nearly-Quartic-Separation-Between-Randomized-and-Quantum-Query-Complexity-October-5-2026/quartic-query-separation.pdf)
 
 - **问题：** 对总布尔函数，随机化查询复杂度 $R(f)$ 与量子查询复杂度 $Q(f)$ 之间已有四次量级的通用关系；需要判断这个指数能否改进为三次或更低。
 - **结论：** 存在一族总布尔函数，使 $R(f)$ 相对于 $Q(f)$ 的分离任意接近四次，因此任何指数严格小于 4 的统一幂律上界都不可能成立。
@@ -74,7 +76,7 @@
 
 ### 7. 无可蒸馏密钥的纠缠与 PPT-square 反例（条目 272）
 
-- **论文 PDF：** [Entanglement with zero distillable secret key](preprints/Entanglement-with-zero-distillable-secret-key-in-local-dimension-ten-September-27-2026/paper.pdf)
+- **论文 PDF：** [Entanglement with zero distillable secret key](../preprints/Entanglement-with-zero-distillable-secret-key-in-local-dimension-ten-September-27-2026/paper.pdf)
 
 - **问题：** 是否存在含有纠缠、但在指定局部测量仪器与双向公开通信协议下不能蒸馏出秘密密钥的量子态；以及两个 PPT 信道复合后是否必然成为纠缠破坏信道。
 - **结论：** 在 $\mathbb C^{10}\otimes\mathbb C^{10}$ 中存在满足相应条件的纠缠态，并且 PPT-square 猜想有反例：PPT 信道的复合不必然是纠缠破坏的。
@@ -84,7 +86,7 @@
 
 ### 8. 玻色系统的熵-光子数不等式（条目 273）
 
-- **论文 PDF：** [Entropy photon-number inequality](preprints/The-entropy-photon-number-inequality-September-24-2026/paper.pdf)
+- **论文 PDF：** [Entropy photon-number inequality](../preprints/The-entropy-photon-number-inequality-September-24-2026/paper.pdf)
 
 - **问题：** 两个相互独立且能量有限的玻色系统输入透射率为 $\eta$ 的分束器后，输出的熵光子数是否至少为两路输入熵光子数的加权平均。
 - **结论：** 对含 $n$ 个模式的状态 $\rho$，定义 $N(\rho)=g^{-1}(S(\rho)/n)$ 后，有
@@ -95,7 +97,7 @@
 
 ### 9. 广义振幅阻尼信道的经典容量（条目 276）
 
-- **论文 PDF：** [Classical capacity of generalized amplitude damping](preprints/Classical-capacity-and-entropy-inequalities-for-generalized-amplitude-damping-September-24-2026/paper.pdf)
+- **论文 PDF：** [Classical capacity of generalized amplitude damping](../preprints/Classical-capacity-and-entropy-inequalities-for-generalized-amplitude-damping-September-24-2026/paper.pdf)
 
 - **问题：** 需要完全确定量子比特广义振幅阻尼信道在任意阻尼强度和热占据参数下的无辅助经典容量，并判断多次使用时是否需要正则化。
 - **结论：** 最优编码可由两个纯态组成的信号系综达到，相关 Holevo 容量、最小输出熵和正则化无辅助容量在张量积使用下可加；在该范围内，纠缠输入不会提高无辅助经典容量。
@@ -105,7 +107,7 @@
 
 ### 10. 有限维纠缠博弈的阈值并行重复（条目 277）
 
-- **论文 PDF：** [Threshold parallel repetition](preprints/Threshold-parallel-repetition-for-finite-dimensional-entangled-games-September-25-2026/paper.pdf)
+- **论文 PDF：** [Threshold parallel repetition](../preprints/Threshold-parallel-repetition-for-finite-dimensional-entangled-games-September-25-2026/paper.pdf)
 
 - **问题：** 若一个有限两方非局域博弈的纠缠值为 $v<1$，独立重复 $k$ 次后，允许任意有限维且跨轮次相关的联合纠缠策略时，赢得至少 $v+\delta$ 比例轮次的概率是否指数衰减。
 - **结论：** 该超额获胜概率随重复次数指数下降；定理允许任意相关的问题分布，也不要求单次最优策略达到上确界。
@@ -117,7 +119,7 @@
 
 ### 11. 二维有隙面积律与 PEPS 近似（条目 265）
 
-- **论文 PDF：** [Two-dimensional area law](preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf)；[Polynomial PEPS approximation](preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf)
+- **论文 PDF：** [Two-dimensional area law](../preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf)；[Polynomial PEPS approximation](../preprints/Polynomial-PEPS-approximation-of-gapped-square-grid-ground-states-September-24-2026/paper.pdf)
 
 - **问题：** 二维有限范围局域 Hamiltonian 的唯一有隙基态是否必然满足纠缠熵面积律，以及能否用多项式键维的投影纠缠对态（PEPS）近似表示。
 - **结论：** 在统一谱隙和受控局域相互作用的假设下，基态纠缠熵满足面积律，并存在全局向量误差至多 $L^{-1}$ 的多项式键维 PEPS 近似。
@@ -127,7 +129,9 @@
 
 ### 12. 六维互无偏基与复 Hadamard 矩阵（条目 266）
 
-- **论文 PDF：** [Maximum number of mutually unbiased bases](preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026.pdf)；[Exact Fourier certificates](preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026.pdf)
+- **论文 PDF：** [Maximum number of mutually unbiased bases](../preprints/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026/The-maximum-number-of-mutually-unbiased-bases-in-dimension-six-September-24-2026.pdf)；[Exact Fourier certificates](../preprints/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026/Exact-Fourier-certificates-for-complex-Hadamard-matrices-of-order-six-September-24-2026.pdf)
+
+- **详细解析：** [六维互无偏基与 Fourier 证书](mub_dimension_six_266.md)
 
 - **问题：** 六维复 Hilbert 空间中最多能有多少个互无偏正交基（MUB），以及六阶复 Hadamard 矩阵具有什么 Fourier 消去性质。
 - **结论：** 论文目录报告维数六的最大 MUB 数量为 $N(6)=3$；相关认证计算排除四组基，Lean 则形式化了一个五基上界模型和 Fourier 辅助引理。
@@ -137,7 +141,7 @@
 
 ### 13. 稀薄硬球 Bose 气体的凝聚（条目 267）
 
-- **论文 PDF：** [Positive-temperature condensation](preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf)；[Momentum distribution and depletion](preprints/Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026/Quantum-Depletion-in-the-Dilute-Hard-Sphere-Bose-Gas.pdf)；[Fixed bounded repulsive potentials](preprints/Quantum-Depletion-for-Fixed-Bounded-Repulsive-Potentials-October-5-2026/fixed-repulsion-quantum-depletion.pdf)；[Density-uniform condensate bound](preprints/A-density-uniform-condensate-bound-for-dilute-Bose-gases-September-27-2026/paper.pdf)；[Ground-state condensation](preprints/Ground-state-condensation-in-the-dilute-hard-sphere-gas-September-24-2026/paper.pdf)
+- **论文 PDF：** [Positive-temperature condensation](../preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf)；[Momentum distribution and depletion](../preprints/Quantum-Depletion-and-Momentum-Distribution-in-the-Dilute-Hard-Sphere-Bose-Gas-October-5-2026/Quantum-Depletion-in-the-Dilute-Hard-Sphere-Bose-Gas.pdf)；[Fixed bounded repulsive potentials](../preprints/Quantum-Depletion-for-Fixed-Bounded-Repulsive-Potentials-October-5-2026/fixed-repulsion-quantum-depletion.pdf)；[Density-uniform condensate bound](../preprints/A-density-uniform-condensate-bound-for-dilute-Bose-gases-September-27-2026/paper.pdf)；[Ground-state condensation](../preprints/Ground-state-condensation-in-the-dilute-hard-sphere-gas-September-24-2026/paper.pdf)
 
 - **问题：** 三维稀薄硬球 Bose 气体在热力学极限下是否发生 Bose–Einstein 凝聚，以及零温凝聚态的量子耗尽是否服从 Bogoliubov 渐近律。
 - **结论：** 在稀薄参数 $\rho a^3$ 受控时，系统具有零动量轨道占据的凝聚下界；零温耗尽的首项按 $\frac{8}{3\sqrt{\pi}}\sqrt{\rho a^3}$ 标度。
@@ -147,7 +151,7 @@
 
 ### 14. 自旋一 Heisenberg 链的 Haldane gap（条目 268）
 
-- **论文 PDF：** [Periodic spin-one Haldane gap](preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf)；[Boundary-field gap](preprints/A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026/paper.pdf)
+- **论文 PDF：** [Periodic spin-one Haldane gap](../preprints/The-periodic-spin-one-Haldane-gap-September-24-2026/paper.pdf)；[Boundary-field gap](../preprints/A-boundary-field-gap-for-the-spin-one-Heisenberg-chain-September-24-2026/paper.pdf)
 
 - **问题：** 纯反铁磁自旋一 Heisenberg 链在偶数周期环上是否保持统一正谱隙；带端点场的奇数开放链是否也具有 uniform gap 和非平凡拓扑指标。
 - **结论：** 有限尺寸谱隙下界可推广到热力学极限；带端点场的开放链具有统一谱隙，边界态拓扑指标为 $-1$。
@@ -157,7 +161,7 @@
 
 ### 15. Laughlin 态的统一谱隙（条目 269）
 
-- **论文 PDF：** [Uniform stability of the spherical Laughlin gap](preprints/Uniform-Stability-of-the-Spherical-Laughlin-Gap-October-5-2026/uniform-stability-spherical-laughlin-gap.pdf)；[Fock-space inequality](preprints/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026.pdf)
+- **论文 PDF：** [Uniform stability of the spherical Laughlin gap](../preprints/Uniform-Stability-of-the-Spherical-Laughlin-Gap-October-5-2026/uniform-stability-spherical-laughlin-gap.pdf)；[Fock-space inequality](../preprints/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026/A-Fock-space-inequality-and-the-Laughlin-spectral-gap-September-24-2026.pdf)
 
 - **问题：** 填充因子 $1/3$ 的球面费米 Laughlin $V_1$ Hamiltonian 是否随粒子数增加保持统一谱隙，以及弱有界标量无序是否破坏唯一基态。
 - **结论：** 未扰动模型满足统一谱隙不等式；在适当小的扰动范围内，大系统仍保持唯一基态和统一扰动阈值。
@@ -167,7 +171,7 @@
 
 ### 16. BFSS 矩阵量子力学的阈值束缚态（条目 270）
 
-- **论文 PDF：** [Unique threshold bound state](preprints/The-unique-threshold-bound-state-of-the-SU-N-BFSS-model-September-24-2026/paper.pdf)；[Positive eigenvalues for SU(2)](preprints/Positive-eigenvalues-of-the-relative-SU-2-BFSS-Hamiltonian-October-5-2026/positive-eigenvalues-relative-su2-bfss.pdf)
+- **论文 PDF：** [Unique threshold bound state](../preprints/The-unique-threshold-bound-state-of-the-SU-N-BFSS-model-September-24-2026/paper.pdf)；[Positive eigenvalues for SU(2)](../preprints/Positive-eigenvalues-of-the-relative-SU-2-BFSS-Hamiltonian-October-5-2026/positive-eigenvalues-relative-su2-bfss.pdf)
 
 - **问题：** 去除质心后的未变形 $\mathrm{SU}(N)$ BFSS 模型对每个有限 $N\ge2$ 是否恰有一个可归一化零能态；$N=2$ 是否还存在无界正能离散态。
 - **结论：** 结果解决了 BFSS 模型的阈值束缚态计数问题，并单独厘清了 $N=2$ 情形的正能谱，避免把正能束缚态的排除结论错误地推广到该情形。
@@ -177,7 +181,7 @@
 
 ### 17. 量子 Heisenberg 铁磁体的自发磁化与 Bloch 定律（条目 271）
 
-- **论文 PDF：** [Bloch's law](preprints/Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026/bloch-law-heisenberg.pdf)；[First lattice correction](preprints/The-first-lattice-correction-to-Blochs-law-October-5-2026/first-lattice-correction-bloch-law.pdf)；[Spherical magnetization law](preprints/The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026/spherical-magnetization.pdf)；[Spontaneous magnetization](preprints/Spontaneous-magnetization-in-the-quantum-Heisenberg-ferromagnet-September-24-2026/paper.pdf)
+- **论文 PDF：** [Bloch's law](../preprints/Blochs-Law-for-Finite-Range-Heisenberg-Ferromagnets-in-Three-Dimensions-October-5-2026/bloch-law-heisenberg.pdf)；[First lattice correction](../preprints/The-first-lattice-correction-to-Blochs-law-October-5-2026/first-lattice-correction-bloch-law.pdf)；[Spherical magnetization law](../preprints/The-spherical-magnetization-law-for-the-three-dimensional-quantum-Heisenberg-ferromagnet-October-5-2026/spherical-magnetization.pdf)；[Spontaneous magnetization](../preprints/Spontaneous-magnetization-in-the-quantum-Heisenberg-ferromagnet-September-24-2026/paper.pdf)
 
 - **问题：** 三维量子 Heisenberg 铁磁体在低正温下是否存在自发磁化，以及磁化亏损是否服从精确的 $T^{3/2}$ Bloch 定律和首个晶格修正。
 - **结论：** 系统在低温下保持自发磁化，磁化具有由一磁振子色散决定的 Bloch 低温渐近式，并可得到各向异性有限程耦合下的精确系数。
@@ -189,7 +193,7 @@
 
 ### 18. 量子几何 Langlands（条目 069）
 
-- **论文 PDF：** [Global quantum geometric Langlands](preprints/Global-quantum-geometric-Langlands-at-irrational-level-October-4-2026/quantum-langlands.pdf)
+- **论文 PDF：** [Global quantum geometric Langlands](../preprints/Global-quantum-geometric-Langlands-at-irrational-level-October-4-2026/quantum-langlands.pdf)
 
 - **问题：** 在不可约有理移位层级 $c\in\mathbb C\setminus\mathbb Q$ 下，能否建立连接群与 Langlands 对偶群之间的非分歧 de Rham 量子几何 Langlands 等价。
 - **结论：** 结果构造了双方扭曲 $D$-模派生范畴之间、与 Langlands 对偶相容的范畴等价。
@@ -199,7 +203,7 @@
 
 ### 19. 强有理酉顶点算子代数与共形网（条目 280）
 
-- **论文 PDF：** [Strongly rational unitary VOAs and conformal nets](preprints/Strongly-rational-unitary-vertex-operator-algebras-and-conformal-nets-September-25-2026/paper.pdf)
+- **论文 PDF：** [Strongly rational unitary VOAs and conformal nets](../preprints/Strongly-rational-unitary-vertex-operator-algebras-and-conformal-nets-September-25-2026/paper.pdf)
 
 - **问题：** 强有理且酉的顶点算子代数（VOA）能否构造出完全有理的共形网，以及 VOA 模块与共形网有限指标 sector 是否具有一致的酉 braided tensor 结构。
 - **结论：** 论文建立了从 VOA 的能量界和强局部性到局部共形网构造的桥梁，并把模块表示论与共形网 sector 理论联系起来；Lean 当前覆盖其中的前置构造结果。
@@ -209,7 +213,7 @@
 
 ### 20. 四维 QFT 中从尺度到局部共形（条目 282）
 
-- **论文 PDF：** [Scale and conformal symmetry](preprints/Scale-and-conformal-symmetry-in-four-dimensional-operational-quantum-field-theory-September-26-2026/main.pdf)
+- **论文 PDF：** [Scale and conformal symmetry](../preprints/Scale-and-conformal-symmetry-in-four-dimensional-operational-quantum-field-theory-September-26-2026/main.pdf)
 
 - **问题：** 在有界局部网、场重构、正能量和离散缩放谱等假设下，四维量子场论中的尺度对称是否必然增强为局部共形对称。
 - **结论：** 对满足这些假设的一类理论，尺度对称可以推出 local conformal symmetry；结论是局部的，不声称整个有界网上存在全局共形作用。
